@@ -107,6 +107,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/PrepareData.html">Prepare External Data</a>
+    </li>
+    <li>
+      <a href="../articles/shinyApp.html">Introduction to Shiny App</a>
+    </li>
+    <li>
       <a href="../articles/Single_site_combo_data.html">Single Site</a>
     </li>
     <li>
@@ -139,7 +145,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Composite normalized hydrograph data</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/USGS-R/HASP/blob/master/R/analyze.R'><code>R/analyze.R</code></a></small>
     <div class="hidden name"><code>normalized_data.Rd</code></div>
     </div>
 
@@ -147,7 +153,7 @@
     <p>Create normalized composite data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>normalized_data</span>(<span class='no'>x</span>, <span class='no'>sum_col</span>, <span class='no'>num_years</span>)</pre>
+    <pre class="usage"><span class='fu'>normalized_data</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>num_years</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,10 +161,6 @@
     <tr>
       <th>x</th>
       <td><p>aquifer data</p></td>
-    </tr>
-    <tr>
-      <th>sum_col</th>
-      <td><p>column name</p></td>
     </tr>
     <tr>
       <th>num_years</th>
@@ -174,11 +176,11 @@
     <p>Information can be found here: <a href='https://groundwaterwatch.usgs.gov/composite/help/CompositeGroundwaterLevelHelpDocument.docx.html'>https://groundwaterwatch.usgs.gov/composite/help/CompositeGroundwaterLevelHelpDocument.docx.html</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>aquifer_data</span> <span class='kw'>&lt;-</span> <span class='no'>aquifer_data</span>
-<span class='no'>sum_col</span> <span class='kw'>&lt;-</span> <span class='st'>"lev_va"</span>
-<span class='no'>num_years</span> <span class='kw'>&lt;-</span> <span class='fl'>30</span>
+    <pre class="examples"><div class='input'><span class='va'>aquifer_data</span> <span class='op'>&lt;-</span> <span class='va'>aquifer_data</span>
+<span class='va'>num_years</span> <span class='op'>&lt;-</span> <span class='fl'>30</span>
 
-<span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'>normalized_data</span>(<span class='no'>aquifer_data</span>, <span class='no'>sum_col</span>, <span class='no'>num_years</span>)</div></pre>
+<span class='va'>norm_data</span> <span class='op'>&lt;-</span> <span class='fu'>normalized_data</span><span class='op'>(</span><span class='va'>aquifer_data</span>, <span class='va'>num_years</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -194,7 +196,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

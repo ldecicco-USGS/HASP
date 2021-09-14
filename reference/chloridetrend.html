@@ -107,6 +107,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/PrepareData.html">Prepare External Data</a>
+    </li>
+    <li>
+      <a href="../articles/shinyApp.html">Introduction to Shiny App</a>
+    </li>
+    <li>
       <a href="../articles/Single_site_combo_data.html">Single Site</a>
     </li>
     <li>
@@ -139,7 +145,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Chloride plot with trend</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/USGS-R/HASP/blob/master/R/chloride.R'><code>R/chloride.R</code></a></small>
     <div class="hidden name"><code>chloridetrend.Rd</code></div>
     </div>
 
@@ -147,32 +153,38 @@
     <p>Function creates the cloride over time plot with trends.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>trend_plot</span>(
-  <span class='no'>qw_data</span>,
-  <span class='no'>plot_title</span>,
-  <span class='kw'>pcode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"00940"</span>, <span class='st'>"99220"</span>),
-  <span class='kw'>norm_range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>225</span>, <span class='fl'>999</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>trend_plot</span><span class='op'>(</span>
+  <span class='va'>qw_data</span>,
+  <span class='va'>plot_title</span>,
+  y_label <span class='op'>=</span> <span class='cn'>NA</span>,
+  CharacteristicName <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Chloride"</span><span class='op'>)</span>,
+  norm_range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>225</span>, <span class='fl'>999</span><span class='op'>)</span>,
+  include_table <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>qw_data</th>
-      <td><p>data frame returned from dataRetrieval::readNWISqw,
-must include columns sample_dt, parm_cd, result_va</p></td>
+      <td><p>data frame returned from dataRetrieval::readWQPqw,
+must include columns ActivityStartDateTime, CharacteristicName, result_va</p></td>
     </tr>
     <tr>
       <th>plot_title</th>
       <td><p>character</p></td>
     </tr>
     <tr>
-      <th>pcode</th>
-      <td><p>character pcode to plot</p></td>
+      <th>CharacteristicName</th>
+      <td><p>character CharacteristicName to plot</p></td>
     </tr>
     <tr>
       <th>norm_range</th>
       <td><p>a numerical range to potentially group the data. If NA, no grouping is shown.</p></td>
+    </tr>
+    <tr>
+      <th>include_table</th>
+      <td><p>logical whether or not to include the trend table in the upper left corner.</p></td>
     </tr>
     </table>
 
@@ -181,12 +193,13 @@ must include columns sample_dt, parm_cd, result_va</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># site &lt;- "263819081585801"</span>
 <span class='co'># parameterCd &lt;- c("00095","90095","00940","99220")</span>
-<span class='co'># site_data &lt;- dataRetrieval::readNWISqw(site, </span>
+<span class='co'># site_data &lt;- dataRetrieval::readWQPqw(site, </span>
 <span class='co'>#                                        parameterCd)</span>
 <span class='co'># Using package example data:</span>
-<span class='no'>qw_data</span> <span class='kw'>&lt;-</span> <span class='no'>L2701_example_data</span>$<span class='no'>QW</span>
-<span class='no'>plot_title</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>qw_data</span>, <span class='st'>"siteInfo"</span>)<span class='kw'>[[</span><span class='st'>"station_nm"</span>]], <span class='st'>": Chloride"</span>)
-<span class='fu'>trend_plot</span>(<span class='no'>qw_data</span>, <span class='no'>plot_title</span>)</div><div class='img'><img src='chloridetrend-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>qw_data</span> <span class='op'>&lt;-</span> <span class='va'>L2701_example_data</span><span class='op'>$</span><span class='va'>QW</span>
+<span class='va'>plot_title</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>qw_data</span>, <span class='st'>"siteInfo"</span><span class='op'>)</span><span class='op'>[[</span><span class='st'>"station_nm"</span><span class='op'>]</span><span class='op'>]</span>, <span class='st'>": Chloride"</span><span class='op'>)</span>
+<span class='fu'>trend_plot</span><span class='op'>(</span><span class='va'>qw_data</span>, <span class='va'>plot_title</span><span class='op'>)</span>
+</div><div class='img'><img src='chloridetrend-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -202,7 +215,7 @@ must include columns sample_dt, parm_cd, result_va</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

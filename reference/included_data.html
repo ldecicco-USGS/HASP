@@ -109,6 +109,12 @@ markerTable raw data" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/PrepareData.html">Prepare External Data</a>
+    </li>
+    <li>
+      <a href="../articles/shinyApp.html">Introduction to Shiny App</a>
+    </li>
+    <li>
       <a href="../articles/Single_site_combo_data.html">Single Site</a>
     </li>
     <li>
@@ -141,7 +147,7 @@ markerTable raw data" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Aquifer data included</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/USGS-R/HASP/blob/master/R/included_data.R'><code>R/included_data.R</code></a></small>
     <div class="hidden name"><code>included_data.Rd</code></div>
     </div>
 
@@ -162,27 +168,30 @@ markerTable raw data" />
 <p>data frame with columns trendType, trend, markerDescription, r_lwd</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>nat_aqfr_state</span>)</div><div class='output co'>#&gt;   Country State nat_aqfr_cd                            long_name other_cd
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>nat_aqfr_state</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   Country State nat_aqfr_cd                            long_name other_cd
 #&gt; 1      US     1  N100ALLUVL                    Alluvial aquifers 20170106
 #&gt; 2      US     1  S100CSLLWD      Coastal lowlands aquifer system 20050203
 #&gt; 3      US     1  S400FLORDN              Floridan aquifer system 20050203
 #&gt; 4      US     1  S100MSEMBM Mississippi embayment aquifer system 20050203
 #&gt; 5      US     1  N500MSSPPI               Mississippian aquifers 20050203
-#&gt; 6      US     1  N9999OTHER                       Other aquifers 20050627</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>summary_aquifers</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 4</span><span>
+#&gt; 6      US     1  N9999OTHER                       Other aquifers 20050627</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>summary_aquifers</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 4</span>
 #&gt;   long_name                               nat_aqfr_cd state_indexes states    
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'>1</span><span> Ada-Vamoosa aquifer                     N300ADAVMS  </span><span style='color: #555555;'>&lt;int [1]&gt;</span><span>     </span><span style='color: #555555;'>&lt;chr [1]&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'>2</span><span> Alaska unconsolidated-deposit aquifers  N100AKUNCD  </span><span style='color: #555555;'>&lt;int [1]&gt;</span><span>     </span><span style='color: #555555;'>&lt;chr [1]&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'>3</span><span> Alluvial aquifers                       N100ALLUVL  </span><span style='color: #555555;'>&lt;int [25]&gt;</span><span>    </span><span style='color: #555555;'>&lt;chr [25]&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> Arbuckle-Simpson aquifer                N400ABKSMP  </span><span style='color: #555555;'>&lt;int [1]&gt;</span><span>     </span><span style='color: #555555;'>&lt;chr [1]&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'>5</span><span> Basin and Range basin-fill aquifers     N100BSNRGB  </span><span style='color: #555555;'>&lt;int [7]&gt;</span><span>     </span><span style='color: #555555;'>&lt;chr [7]&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'>6</span><span> Basin and Range carbonate-rock aquifers N400BSNRGC  </span><span style='color: #555555;'>&lt;int [5]&gt;</span><span>     </span><span style='color: #555555;'>&lt;chr [5]&gt;</span><span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>local_aqfr</span>)</div><div class='output co'>#&gt;   aqfr_cd              Aqfr_Name_prpr
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span> Ada-Vamoosa aquifer                     N300ADAVMS  <span style='color: #949494;'>&lt;int [1]&gt;</span>     <span style='color: #949494;'>&lt;chr [1]&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>2</span> Alaska unconsolidated-deposit aquifers  N100AKUNCD  <span style='color: #949494;'>&lt;int [1]&gt;</span>     <span style='color: #949494;'>&lt;chr [1]&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>3</span> Alluvial aquifers                       N100ALLUVL  <span style='color: #949494;'>&lt;int [25]&gt;</span>    <span style='color: #949494;'>&lt;chr [25]&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>4</span> Arbuckle-Simpson aquifer                N400ABKSMP  <span style='color: #949494;'>&lt;int [1]&gt;</span>     <span style='color: #949494;'>&lt;chr [1]&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>5</span> Basin and Range basin-fill aquifers     N100BSNRGB  <span style='color: #949494;'>&lt;int [7]&gt;</span>     <span style='color: #949494;'>&lt;chr [7]&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>6</span> Basin and Range carbonate-rock aquifers N400BSNRGC  <span style='color: #949494;'>&lt;int [5]&gt;</span>     <span style='color: #949494;'>&lt;chr [5]&gt;</span> </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>local_aqfr</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   aqfr_cd              Aqfr_Name_prpr
 #&gt; 1 100CNZC            Cenozoic Erathem
 #&gt; 2 110NRSD    Nonartesian Sand Aquifer
 #&gt; 3 110SAQS    Surficial Aquifer System
 #&gt; 4 111HCPC Holocene-Pleistocene Series
 #&gt; 5 111NRSD    Nonartesian Sand Aquifer
-#&gt; 6 112ANSS         Anastasia Formation</div></span></pre>
+#&gt; 6 112ANSS         Anastasia Formation</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -198,7 +207,7 @@ markerTable raw data" />
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

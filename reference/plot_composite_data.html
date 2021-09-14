@@ -107,6 +107,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/PrepareData.html">Prepare External Data</a>
+    </li>
+    <li>
+      <a href="../articles/shinyApp.html">Introduction to Shiny App</a>
+    </li>
+    <li>
       <a href="../articles/Single_site_combo_data.html">Single Site</a>
     </li>
     <li>
@@ -139,7 +145,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot composite hydrograph data</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/USGS-R/HASP/blob/master/R/visualize.R'><code>R/visualize.R</code></a></small>
     <div class="hidden name"><code>plot_composite_data.Rd</code></div>
     </div>
 
@@ -147,26 +153,24 @@
     <p>Create composite hydrograph plot</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_composite_data</span>(<span class='no'>x</span>, <span class='no'>sum_col</span>, <span class='no'>num_years</span>, <span class='kw'>plot_title</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_composite_data</span><span class='op'>(</span><span class='va'>x</span>, num_years <span class='op'>=</span> <span class='cn'>NA</span>, plot_title <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>aquifer data</p></td>
-    </tr>
-    <tr>
-      <th>sum_col</th>
-      <td><p>column name</p></td>
+      <td><p>aquifer data frame. Requires at least 3 columns. Two are required "site_no", "year",
+and "value".</p></td>
     </tr>
     <tr>
       <th>num_years</th>
-      <td><p>integer number of years required</p></td>
+      <td><p>integer number of years required. If <code>NA</code>, the 
+analysis will default to the range of the data in x.</p></td>
     </tr>
     <tr>
       <th>plot_title</th>
-      <td><p>character</p></td>
+      <td><p>character title included on plot.</p></td>
     </tr>
     </table>
 
@@ -175,12 +179,18 @@
     <p>ggplot2 object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>aquifer_data</span> <span class='kw'>&lt;-</span> <span class='no'>aquifer_data</span>
-<span class='no'>sum_col</span> <span class='kw'>&lt;-</span> <span class='st'>"lev_va"</span>
-<span class='no'>num_years</span> <span class='kw'>&lt;-</span> <span class='fl'>30</span>
+    <pre class="examples"><div class='input'><span class='va'>aquifer_data</span> <span class='op'>&lt;-</span> <span class='va'>aquifer_data</span>
+<span class='va'>num_years</span> <span class='op'>&lt;-</span> <span class='fl'>30</span>
 
-<span class='no'>comp_data</span> <span class='kw'>&lt;-</span> <span class='fu'>plot_composite_data</span>(<span class='no'>aquifer_data</span>, <span class='no'>sum_col</span>, <span class='no'>num_years</span>)
-<span class='no'>comp_data</span></div><div class='img'><img src='plot_composite_data-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>comp_data</span> <span class='op'>&lt;-</span> <span class='fu'>plot_composite_data</span><span class='op'>(</span><span class='va'>aquifer_data</span>, <span class='va'>num_years</span>, 
+                    plot_title <span class='op'>=</span> <span class='st'>"Calendar Year"</span><span class='op'>)</span>
+<span class='va'>comp_data</span>
+</div><div class='img'><img src='plot_composite_data-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Do it on a water year:</span>
+<span class='va'>aquifer_data</span><span class='op'>$</span><span class='va'>cal_year</span> <span class='op'>&lt;-</span> <span class='va'>aquifer_data</span><span class='op'>$</span><span class='va'>year</span>
+<span class='va'>aquifer_data</span><span class='op'>$</span><span class='va'>year</span> <span class='op'>&lt;-</span> <span class='va'>aquifer_data</span><span class='op'>$</span><span class='va'>water_year</span>
+<span class='fu'>plot_composite_data</span><span class='op'>(</span><span class='va'>aquifer_data</span>, <span class='va'>num_years</span>, 
+                    plot_title <span class='op'>=</span> <span class='st'>"Water Year"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_composite_data-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -196,7 +206,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
