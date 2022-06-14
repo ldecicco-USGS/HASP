@@ -87,6 +87,7 @@ take the summaries</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">aquifer_data</span> <span class="op">&lt;-</span> <span class="va">aquifer_data</span></span>
+<span class="r-in"><span class="va">aquifer_data</span> <span class="op">&lt;-</span> <span class="va">aquifer_data</span><span class="op">[</span><span class="va">aquifer_data</span><span class="op">$</span><span class="va">parameter_cd</span> <span class="op">==</span> <span class="st">"72019"</span>, <span class="op">]</span></span>
 <span class="r-in"><span class="va">summary_info</span> <span class="op">&lt;-</span> <span class="fu">site_data_summary</span><span class="op">(</span><span class="va">aquifer_data</span><span class="op">)</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>

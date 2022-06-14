@@ -65,7 +65,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">composite_data</span><span class="op">(</span><span class="va">x</span>, <span class="va">num_years</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">composite_data</span><span class="op">(</span><span class="va">x</span>, <span class="va">num_years</span>, <span class="va">parameter_cd</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -76,6 +76,10 @@
 
 <dt>num_years</dt>
 <dd><p>integer number of years required</p></dd>
+
+
+<dt>parameter_cd</dt>
+<dd><p>character, 5-digit parameter code, default is "72019".</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -90,7 +94,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">aquifer_data</span> <span class="op">&lt;-</span> <span class="va">aquifer_data</span></span>
 <span class="r-in"><span class="va">num_years</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">comp_data</span> <span class="op">&lt;-</span> <span class="fu">composite_data</span><span class="op">(</span><span class="va">aquifer_data</span>, <span class="va">num_years</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">comp_data</span> <span class="op">&lt;-</span> <span class="fu">composite_data</span><span class="op">(</span><span class="va">aquifer_data</span>, <span class="va">num_years</span>, <span class="st">"72019"</span><span class="op">)</span></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
