@@ -16,7 +16,7 @@
     <a href="https://www.usgs.gov/" class="external-link"><img src="logo.png" id="logo" alt="Home" style="padding: 0px 50px 0px 0px;"></a>
     <a class="navbar-brand me-2" href="../index.html">HASP</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,6 +67,7 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">weekly_frequency_plot</span><span class="op">(</span></span>
 <span>  <span class="va">gw_level_dv</span>,</span>
+<span>  <span class="va">gwl_data</span>,</span>
 <span>  parameter_cd <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  date_col <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  value_col <span class="op">=</span> <span class="cn">NA</span>,</span>
@@ -76,7 +77,7 @@
 <span>  plot_title <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="st">"U.S. Geological Survey"</span>,</span>
 <span>  y_axis_label <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  flip_y <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  flip <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -85,6 +86,13 @@
     <dl><dt>gw_level_dv</dt>
 <dd><p>data frame, daily groundwater level data. Often obtained
 from <code>readNWISdv</code>.</p></dd>
+
+
+<dt>gwl_data</dt>
+<dd><p>data frame returned from dataRetrieval::readNWISgwl, or 
+data frame with mandatory columns lev_dt (representing date), lev_age_cd (representing
+approval code), and a column representing the measured value (either lev_va,
+sl_lev_va, or value).</p></dd>
 
 
 <dt>parameter_cd</dt>
@@ -131,7 +139,7 @@ in January.</p></dd>
 <dd><p>the label used for the y-axis of the plot.</p></dd>
 
 
-<dt>flip_y</dt>
+<dt>flip</dt>
 <dd><p>logical. If <code>TRUE</code>, flips the y axis so that the smallest number is on top.
 Default is <code>FALSE</code>.</p></dd>
 
@@ -153,6 +161,7 @@ and points representing the historical median and daily values</p>
 <span class="r-in"><span><span class="co"># gw_level_dv &lt;- dataRetrieval::readNWISdv(site, p_code_dv, statCd = statCd)</span></span></span>
 <span class="r-in"><span><span class="va">gw_level_dv</span> <span class="op">&lt;-</span> <span class="va">L2701_example_data</span><span class="op">$</span><span class="va">Daily</span></span></span>
 <span class="r-in"><span><span class="fu">weekly_frequency_plot</span><span class="op">(</span><span class="va">gw_level_dv</span>, </span></span>
+<span class="r-in"><span>                      gwl_data <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
 <span class="r-in"><span>                      date_col <span class="op">=</span> <span class="st">"Date"</span>,</span></span>
 <span class="r-in"><span>                      value_col <span class="op">=</span> <span class="st">"X_62610_00001"</span>,</span></span>
 <span class="r-in"><span>                      approved_col <span class="op">=</span> <span class="st">"X_62610_00001_cd"</span><span class="op">)</span></span></span>
@@ -160,15 +169,19 @@ and points representing the historical median and daily values</p>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 rows containing missing values (geom_point).</span>
 <span class="r-plt img"><img src="weekly_frequency_plot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span>                      </span></span>
+<span class="r-in"><span><span class="va">gwl_data</span> <span class="op">&lt;-</span> <span class="va">L2701_example_data</span><span class="op">$</span><span class="va">Discrete</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">weekly_frequency_plot</span><span class="op">(</span><span class="va">gw_level_dv</span>, </span></span>
+<span class="r-in"><span>                      gwl_data <span class="op">=</span> <span class="va">gwl_data</span>,</span></span>
 <span class="r-in"><span>                      parameter_cd <span class="op">=</span> <span class="st">"62610"</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 5 rows containing missing values (geom_rect).</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 rows containing missing values (geom_point).</span>
 <span class="r-plt img"><img src="weekly_frequency_plot-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span>                      </span></span>
 <span class="r-in"><span><span class="fu">weekly_frequency_plot</span><span class="op">(</span><span class="va">gw_level_dv</span>, </span></span>
+<span class="r-in"><span>                      gwl_data <span class="op">=</span> <span class="va">gwl_data</span>,</span></span>
 <span class="r-in"><span>                      parameter_cd <span class="op">=</span> <span class="st">"62610"</span>, </span></span>
-<span class="r-in"><span>                      flip_y <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                      flip <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 5 rows containing missing values (geom_rect).</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 rows containing missing values (geom_point).</span>
 <span class="r-plt img"><img src="weekly_frequency_plot-3.png" alt="" width="700" height="433"></span>
